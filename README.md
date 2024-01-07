@@ -8,6 +8,12 @@ I created this for a raspberry PI install with mainsail OS.
 
 ## Setup
 
+* in the home directory of your klipper user, checkout out the repo 
+
+'''
+git clone https://github.com/thomas-tomlinson/klipper-git-backup.git
+'''
+
 * Add the following to the moonraker.cfg file and restart moonraker.  This will
 install the script.
 
@@ -83,7 +89,7 @@ and push them up to the new repo.
   replace the "/home/pi" prefix if your klipper host is different)
 
 ```
-0 0 * * * /home/pi/backup_klipper_config.sh 2>&1 >/dev/null
+0 0 * * * /home/pi/klipper-git-backup/backup_klipper_config.sh 2>&1 >/dev/null
 ```
 
 
