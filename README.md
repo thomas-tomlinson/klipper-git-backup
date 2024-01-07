@@ -10,12 +10,11 @@ I created this for a raspberry PI install with mainsail OS.
 
 * in the home directory of your klipper user, checkout out the repo 
 
-'''
+```
 git clone https://github.com/thomas-tomlinson/klipper-git-backup.git
-'''
+```
 
-* Add the following to the moonraker.cfg file and restart moonraker.  This will
-install the script.
+* Add the following to the moonraker.cfg file and restart moonraker.  
 
 ```
 # klipper git backup script
