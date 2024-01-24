@@ -27,14 +27,28 @@ primary_branch: main
 ```
 
 * Login to your klipper host as the klipper user (usually pi if your running
-  mainsail OS) and create a directory called [git_backup.  i.e. mkdir
-  ~/git_backup.
+  mainsail OS) and create a directory called `git_backup`.  i.e. `mkdir
+  ~/git_backup`.
 
 * If you haven't already, create a ssh key for your klipper user.  If you see
   files beginning with id_ in the .ssh directory of your klipper user, you
-  probably already have these.  if not, run the command [ssh-keygen] and accept
+  probably already have these.  if not, run the command `ssh-keygen` and accept
   all of the defaults.  We're going to need the one that ends in .pub.  Keep
   the file name in mind.
+
+* Also as the klipper user on your host, you'll need the bare minimum gitconfig
+  to make git commits.  This just consists of a file named `.gitconfig` in your
+  user's home directory with contents such as this (this is the user info that
+  will show up on the commits made by the backup script.  while you put
+  anything in here that looks like a name and email address I'd keep it
+  specific to your printer and functionl like mine).  If you skip this step,
+  you'll be greeted by a git commit failure when you try to run your first
+  backup. Here's my gitconfig `/home/pi/.gitconfig` 
+```
+[user]
+	email = pi@v02-1.local
+	name = klipper user
+```
 
 * Create a github repo for your machine's backups.  You can name this anything
   you want want, it just needs to be unique to your printer.  Make this a
@@ -57,20 +71,23 @@ cat ~/.ssh/id_rsa.pub
   window), if will return you to the main screen of your repo with the initial
   setup directions.  you'll wants this in front of you for the next step.
 
+
 * Back on your klipper host as the klipper user, cd into the git_backup
-  directory [cd ~/git_backup].  Now, we're going to follow the Quick setup
+  directory `cd ~/git_backup`.  Now, we're going to follow the Quick setup
   guide.  Click the "SSH" button right under the Quick Setup and the directions
   will be cut and paste to get the repo up and running.  For me, i would do the
-  following on a new repo i created while building these directions:
-  NOTE: if you're an experienced git/ssh/linux person, feel free to init the
-  repo any way you wish.
+  following on a new repo i created while building these directions for my
+  repo  named `v02-1.local-backup`
+  **NOTE: if you're an experienced git/ssh/linux person, feel free to init the
+  repo any way you wish.**
+
 ```
 echo "# test-klipper-backup" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remote add origin git@github.com:thomas-tomlinson/test-klipper-backup.git
+git remote add origin git@github.com:thomas-tomlinson/v02-1.local-backup.git
 git push -u origin main
 ```
 You'll be prompted add the host key of the remote repo, answer yes to this.
